@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAROS - Lüks Parfüm Koleksiyonu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 80px;
+            background: rgba(10, 10, 10, 0.95);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: #d4af37;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: #d4af37;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu Overlay */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        .hero-title {
+            font-size: 80px;
+            font-weight: 300;
+            letter-spacing: 15px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #d4af37 0%, #f5e6c8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #cccccc;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 50px;
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #d4af37;
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: #0a0a0a;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* Featured Section */
+        .featured {
+            padding: 120px 80px;
+            background: #0f0f0f;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 80px;
+            color: #d4af37;
+            opacity: 0;
+        }
+
+        .section-title.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .product-card.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .product-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .product-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+            padding: 30px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .product-name {
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: #cccccc;
+            letter-spacing: 1px;
+        }
+
+        /* Coming Soon Animation */
+        .coming-soon {
+            text-align: center;
+            padding: 80px 0;
+            opacity: 0;
+        }
+
+        .coming-soon.visible {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .coming-soon-text {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 20px;
+            color: #d4af37;
+            position: relative;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .coming-soon-dots {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .coming-soon-dots span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d4af37;
+            margin: 0 8px;
+            animation: dotPulse 1.4s ease-in-out infinite;
+        }
+
+        .coming-soon-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .coming-soon-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Story Section */
+        .story {
+            padding: 120px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .story-content {
+            opacity: 0;
+        }
+
+        .story-content.visible {
+            animation: fadeInLeft 1s ease forwards;
+        }
+
+        .story-title {
+            font-size: 42px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 30px;
+            color: #d4af37;
+        }
+
+        .story-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #cccccc;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .construction-notice {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #d4af37;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .construction-notice.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .construction-notice-text {
+            font-size: 18px;
+            color: #d4af37;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            opacity: 0;
+        }
+
+        .story-image.visible {
+            animation: fadeInRight 1s ease forwards;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 100px 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+
+        .newsletter-subtitle {
+            font-size: 14px;
+            color: #cccccc;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 25px;
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #ffffff;
+            font-size: 14px;
+            letter-spacing: 2px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input::placeholder {
+            color: #666666;
+        }
+
+        .newsletter-input:focus {
+            border-color: #f5e6c8;
+        }
+
+        .newsletter-button {
+            padding: 15px 40px;
+            background: #d4af37;
+            border: none;
+            color: #0a0a0a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: #f5e6c8;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 80px;
+            border-top: 1px solid #333333;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 16px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            color: #d4af37;
+            font-weight: 400;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #999999;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #d4af37;
+        }
+
+        .footer-bottom {
+            padding: 30px 80px;
+            text-align: center;
+            border-top: 1px solid #333333;
+            color: #666666;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            from {
+                transform: translateX(-30px);
+            }
+        }
+
+        @keyframes fadeInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            from {
+                transform: translateX(30px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 30px;
+            }
+
+            .logo {
+                font-size: 20px;
+                gap: 10px;
+            }
+
+            .logo span {
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                padding: 80px 20px 20px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-overlay {
+                display: block;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                font-size: 16px;
+                padding: 15px 0;
+                display: block;
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .coming-soon-text {
+                font-size: 36px;
+                letter-spacing: 10px;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#home" class="logo">
+            <div class="logo-icon">
+                <img src="assets/logo.jpg" alt="HAROS Logo">
+            </div>
+            <span>HAROS</span>
+        </a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-overlay"></div>
+        <ul class="nav-links">
+            <li><a href="#home">Ana Sayfa</a></li>
+            <li><a href="#collection">Koleksiyon</a></li>
+            <li><a href="#about">Hakkımızda</a></li>
+            <li><a href="#contact">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">HAROS</h1>
+            <p class="hero-subtitle">Zarafet ve Tutkunun Buluşması</p>
+            <a href="#collection" class="cta-button">Koleksiyonu Keşfet</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured" id="collection">
+        <h2 class="section-title">Öne Çıkan Koleksiyon</h2>
+        <div class="coming-soon">
+            <div class="coming-soon-text">
+                YAKINDA
+                <div class="coming-soon-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story" id="about">
+        <div class="story-content">
+            <h2 class="story-title">Hikayemiz</h2>
+            <div class="construction-notice">
+                <p class="construction-notice-text">Site Şu Anda Yapım Aşamasında</p>
+            </div>
+        </div>
+        <img src="assets/hikayemiz.jpg" alt="Hikayemiz" class="story-image">
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2 class="newsletter-title">Özel Fırsatlar</h2>
+        <p class="newsletter-subtitle">Yeni koleksiyonlar ve özel tekliflerden ilk siz haberdar olun</p>
+        <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="E-posta adresiniz">
+            <button type="submit" class="newsletter-button">Abone Ol</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-column">
+            <h3>HAROS</h3>
+            <ul>
+                <li><a href="#">Hakkımızda</a></li>
+                <li><a href="#">Mağazalarımız</a></li>
+                <li><a href="#">Kariyer</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Müşteri Hizmetleri</h3>
+            <ul>
+                <li><a href="#">İletişim</a></li>
+                <li><a href="#">SSS</a></li>
+                <li><a href="#">Kargo & İade</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Koleksiyonlar</h3>
+            <ul>
+                <li><a href="#">Kadın Parfümleri</a></li>
+                <li><a href="#">Erkek Parfümleri</a></li>
+                <li><a href="#">Unisex Serisi</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Takip Edin</h3>
+            <ul>
+                <li><a href="https://www.instagram.com/harosparfumeur/" target="_blank"
+                        rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        © 2025 HAROS. Tüm hakları saklıdır.
+    </div>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        });
+
+        // Close menu when clicking on overlay
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.section-title, .coming-soon, .story-content, .story-image, .construction-notice').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('.newsletter-input').value;
+            if (email) {
+                alert('Teşekkürler! E-posta listemize eklendiniz.');
+                e.target.reset();
+            }
+        });
+    </script>
+</body>
+
+</html>
