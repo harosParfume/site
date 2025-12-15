@@ -1,5 +1,75 @@
 /* Home Page Specific Styles */
 
+/* Scroll Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation classes */
+.animate-on-scroll {
+    opacity: 0;
+    transition: none;
+}
+
+.animate-on-scroll.animated {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-scale {
+    opacity: 0;
+    transition: none;
+}
+
+.animate-scale.animated {
+    animation: fadeInScale 0.6s ease-out forwards;
+}
+
+/* Stagger animation delays for multiple items */
+.animate-on-scroll:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.animate-on-scroll:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.animate-on-scroll:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.animate-on-scroll:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.animate-on-scroll:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.animate-on-scroll:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -29,13 +99,14 @@
 
 .category-card {
     display: grid;
-    grid-template-rows: 240px 1fr;
+    grid-template-rows: 320px 1fr;
+    border: none !important;
 }
 
 .category-image {
     position: relative;
     overflow: hidden;
-    background: var(--bg-tertiary);
+    background: var(--bg-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,12 +118,12 @@
     object-fit: contain;
     object-position: center;
     transition: transform 0.4s ease;
-    padding: 8px;
-    transform: scale(0.92);
+    padding: 4px;
+    transform: scale(0.98);
 }
 
 .category-card:hover .category-image img {
-    transform: scale(0.96);
+    transform: scale(1.02);
 }
 
 .category-card h3 {
@@ -75,13 +146,13 @@
 
 /* Product Grid */
 .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     margin-top: 24px;
 }
 
 .product-card {
     display: grid;
-    grid-template-rows: 260px 1fr;
+    grid-template-rows: 320px 1fr;
     cursor: pointer;
 }
 
@@ -96,6 +167,7 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    padding: 0;
 }
 
 .product-card:hover .product-media img {
@@ -219,6 +291,15 @@
     .product-grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }
+
+    .product-media img {
+        object-fit: contain;
+        padding: 3px;
+    }
+
+    .product-card:hover .product-media img {
+        transform: scale(1.03);
+    }
 }
 
 @media (max-width: 640px) {
@@ -231,7 +312,7 @@
     }
 
     .category-card {
-        grid-template-rows: 200px 1fr;
+        grid-template-rows: 260px 1fr;
     }
 
     .cta-row {
@@ -255,12 +336,12 @@
     }
 
     .category-image img {
-        padding: 5px;
-        transform: scale(0.94);
+        padding: 3px;
+        transform: scale(0.99);
     }
 
     .category-card:hover .category-image img {
-        transform: scale(0.98);
+        transform: scale(1.03);
     }
 }
 
@@ -290,8 +371,28 @@
     }
 
     .product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .product-card {
+        grid-template-rows: 450px 1fr;
+    }
+
+    .product-media {
+        background: var(--bg-primary);
+    }
+
+    .product-media img {
+        object-fit: contain;
+        padding: 4px;
+    }
+
+    .product-card:hover .product-media img {
+        transform: scale(1.02);
     }
 
     .features-grid {
@@ -313,7 +414,7 @@
     }
 
     .category-card {
-        grid-template-rows: 180px 1fr;
+        grid-template-rows: 220px 1fr;
     }
 
     .product-title {

@@ -202,25 +202,45 @@ function setupCategoryFilters() {
 // Smooth reveal animations on scroll
 function applyScrollAnimations() {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -80px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target); // Only animate once
             }
         });
     }, observerOptions);
 
-    // Observe all cards
-    document.querySelectorAll('.card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    // Observe product cards with animation class
+    document.querySelectorAll('.product-card').forEach((card, index) => {
+        card.classList.add('animate-on-scroll');
+        // Add stagger delay
+        card.style.animationDelay = `${index * 0.1}s`;
         observer.observe(card);
+    });
+
+    // Observe category cards
+    document.querySelectorAll('.category-card').forEach((card, index) => {
+        card.classList.add('animate-on-scroll');
+        card.style.animationDelay = `${index * 0.15}s`;
+        observer.observe(card);
+    });
+
+    // Observe feature cards
+    document.querySelectorAll('.features-grid .panel').forEach((panel, index) => {
+        panel.classList.add('animate-on-scroll');
+        panel.style.animationDelay = `${index * 0.1}s`;
+        observer.observe(panel);
+    });
+
+    // Observe section headings
+    document.querySelectorAll('.section-heading').forEach(heading => {
+        heading.classList.add('animate-scale');
+        observer.observe(heading);
     });
 }
 

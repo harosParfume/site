@@ -4,9 +4,9 @@
     const THEME_KEY = 'haros-theme';
     const themeToggle = document.querySelector('.theme-toggle');
 
-    // Get saved theme or default to light
+    // Get saved theme or default to dark
     function getTheme() {
-        return localStorage.getItem(THEME_KEY) || 'light';
+        return localStorage.getItem(THEME_KEY) || 'dark';
     }
 
     // Set theme
