@@ -65,12 +65,12 @@
 /* Active category card */
 .category-card.active-category {
     border-color: var(--accent-primary);
-    box-shadow: 0 8px 32px rgba(212, 165, 165, 0.3);
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
     transform: translateY(-6px);
 }
 
 [data-theme="dark"] .category-card.active-category {
-    box-shadow: 0 8px 32px rgba(232, 180, 180, 0.4);
+    box-shadow: 0 8px 32px rgba(232, 197, 71, 0.4);
 }
 
 /* Product Grid */
@@ -263,6 +263,7 @@
         transform: scale(0.98);
     }
 }
+
 /* Enhanced Mobile Responsive */
 @media (max-width: 768px) {
     .hero {
