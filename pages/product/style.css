@@ -212,7 +212,8 @@
 
     .product-main img {
         height: auto;
-        max-height: 500px;
+        max-height: 400px;
+        padding: 12px;
     }
 
     .thumb-strip {
@@ -243,6 +244,7 @@
         padding: 20px;
     }
 }
+
 /* Enhanced Product Page Responsive */
 @media (max-width: 768px) {
     .product-layout {
@@ -293,7 +295,12 @@
 
 @media (max-width: 480px) {
     .product-main {
-        height: 300px;
+        height: auto;
+    }
+
+    .product-main img {
+        max-height: 300px;
+        padding: 8px;
     }
 
     .thumb-lg {

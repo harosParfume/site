@@ -4,15 +4,16 @@
     const THEME_KEY = 'haros-theme';
     const themeToggle = document.querySelector('.theme-toggle');
 
-    // Get saved theme or default to dark
+    // Get theme - always start with dark, but allow temporary toggle
     function getTheme() {
-        return localStorage.getItem(THEME_KEY) || 'dark';
+        // Always return 'dark' on page load (ignore localStorage)
+        return 'dark';
     }
 
-    // Set theme
+    // Set theme (only for current session, don't save to localStorage)
     function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem(THEME_KEY, theme);
+        // Don't save to localStorage - we want dark mode on every page load
         updateThemeIcon(theme);
     }
 
@@ -24,20 +25,61 @@
         }
     }
 
-    // Toggle theme
+    // Toggle theme (temporary, only for current session)
+    let currentTheme = 'dark'; // Start with dark
     function toggleTheme() {
-        const currentTheme = getTheme();
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(currentTheme);
     }
 
-    // Initialize theme
-    const savedTheme = getTheme();
-    setTheme(savedTheme);
+    // Initialize theme - always start with dark
+    setTheme('dark');
 
     // Add event listener to theme toggle
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
+    }
+
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close menu when scrolling
+        let lastScrollPosition = 0;
+        window.addEventListener('scroll', () => {
+            const currentScrollPosition = window.pageYOffset;
+
+            // Close menu if scrolled more than 50px
+            if (Math.abs(currentScrollPosition - lastScrollPosition) > 50) {
+                if (navLinks.classList.contains('active')) {
+                    mobileMenuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+                lastScrollPosition = currentScrollPosition;
+            }
+        }, { passive: true });
     }
 
     // Active navigation link
