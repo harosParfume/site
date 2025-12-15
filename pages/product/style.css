@@ -1,0 +1,311 @@
+/* Product Page Specific Styles */
+
+.product-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.product-main {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    background: var(--bg-secondary);
+    box-shadow: var(--shadow-md);
+}
+
+.product-main img {
+    width: 100%;
+    height: min(70vh, 720px);
+    object-fit: contain;
+    background: var(--bg-tertiary);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.product-main:hover img {
+    transform: scale(1.02);
+}
+
+.thumb-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.thumb-lg {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    background: var(--bg-tertiary);
+}
+
+.thumb-lg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumb-lg.active,
+.thumb-lg:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.product-meta {
+    display: grid;
+    gap: 20px;
+}
+
+.product-meta h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+}
+
+/* Fragrance Notes Pyramid */
+.notes-pyramid {
+    background: var(--gradient-hero);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 16px;
+}
+
+.notes-pyramid h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.note-block {
+    margin-bottom: 16px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-primary);
+    transition: all 0.2s ease;
+}
+
+.note-block:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
+}
+
+.note-block:last-child {
+    margin-bottom: 0;
+}
+
+.note-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.note-title::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+}
+
+.note-line {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Product Info Panels */
+.info-panel {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+}
+
+.info-panel:hover {
+    border-color: var(--accent-secondary);
+    box-shadow: var(--shadow-md);
+}
+
+.info-panel h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.info-panel ul {
+    list-style: none;
+}
+
+.info-panel ul li {
+    padding-left: 24px;
+    position: relative;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.info-panel ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-weight: bold;
+}
+
+/* CTA Row */
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.cta-row .btn {
+    flex: 1;
+    min-width: 200px;
+    justify-content: center;
+}
+
+.back-link {
+    margin-top: 12px;
+}
+
+.back-link a {
+    color: var(--accent-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.back-link a:hover {
+    transform: translateX(-4px);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .product-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .product-main img {
+        height: auto;
+        max-height: 500px;
+    }
+
+    .thumb-strip {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .product-meta h1 {
+        font-size: 28px;
+    }
+
+    .thumb-lg {
+        width: 70px;
+        height: 70px;
+    }
+
+    .cta-row .btn {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .notes-pyramid {
+        padding: 20px;
+    }
+
+    .info-panel {
+        padding: 20px;
+    }
+}
+/* Enhanced Product Page Responsive */
+@media (max-width: 768px) {
+    .product-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .notes-pyramid {
+        margin-top: 20px;
+    }
+
+    .info-panel {
+        padding: 16px;
+    }
+
+    .info-panel h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 640px) {
+    .product-main {
+        height: 350px;
+    }
+
+    .thumb-strip {
+        gap: 8px;
+    }
+
+    .thumb-lg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .note-block {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .note-title {
+        font-size: 13px;
+    }
+
+    .note-line {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-main {
+        height: 300px;
+    }
+
+    .thumb-lg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .notes-pyramid h4 {
+        font-size: 16px;
+    }
+
+    .info-panel ul li {
+        font-size: 13px;
+    }
+}

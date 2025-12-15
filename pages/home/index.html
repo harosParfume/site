@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Haros Parfumeur - Modern, kalıcı ve etkileyici parfüm koleksiyonu. Maskülen ve unisex seriler.">
+    <title>Haros | Lüks Parfüm Koleksiyonu</title>
+    <link rel="stylesheet" href="../shared/theme.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="nav-bar">
+            <a class="brand" href="./index.html">
+                <img src="../../assets/logo.jpg" alt="Haros logo">
+                <span>Haros</span>
+            </a>
+            <nav class="nav-links">
+                <a href="./index.html" class="active">Ana Sayfa</a>
+                <a href="#kategoriler">Kategoriler</a>
+                <a href="#koleksiyon">Koleksiyon</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" aria-label="Temayı değiştir">🌙</button>
+                <a class="shop-link"
+                    href="https://www.trendyol.com/magaza/haros-parfumeur-m-1203037?sst=0&channelId=1&event=0"
+                    target="_blank" rel="noopener noreferrer">
+                    🛒 <span>Mağaza</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content stack">
+                <p class="pill">✨ Haros Parfumeur</p>
+                <h1>Modern, kalıcı,<br>etkileyici</h1>
+                <p>Maskülen ve unisex serilerde ferah, odunsu, tatlı ve amber dokular. Her seri Trendyol'da, detaylar
+                    burada. Kendinize en uygun kokuyu keşfedin.</p>
+                <div class="tag-row">
+                    <span class="badge">🍋 Ferah & Baharatlı</span>
+                    <span class="badge">🌿 Fresh & Odunsu</span>
+                    <span class="badge">🍑 Meyvemsi & Tatlı</span>
+                    <span class="badge">🏃 Sportif & Dinamik</span>
+                    <span class="badge">🍯 Vanilya & Amber</span>
+                </div>
+                <div class="cta-row">
+                    <a class="btn primary" href="#koleksiyon">Koleksiyonu Keşfet</a>
+                    <a class="btn secondary" href="#kategoriler">Kategoriler</a>
+                </div>
+            </div>
+            <div class="hero-visual card">
+                <img src="../../assets/hero.png" alt="Haros Parfüm Koleksiyonu">
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="kategoriler" class="section-block">
+            <h2 class="section-heading">Parfüm Kategorileri</h2>
+            <p class="muted">Kişiliğinize ve tarzınıza uygun parfüm ailesini seçin.</p>
+            <div class="grid category-grid">
+                <article class="card category-card">
+                    <div class="category-image">
+                        <img src="../../assets/pt_fresh_ve_ferah.jpeg" alt="Fresh ve Ferah Parfümler">
+                    </div>
+                    <div class="card-body">
+                        <h3>Fresh & Ferah</h3>
+                        <p class="muted">Narenciye ve yeşil notalarla enerjik, temiz kokular. Günlük kullanım için
+                            ideal.</p>
+                        <div class="tag-row">
+                            <span class="badge">M-0001</span>
+                            <span class="badge">M-0002</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card category-card">
+                    <div class="category-image">
+                        <img src="../../assets/pt_tatlı_ve_romantik.jpeg" alt="Tatlı ve Romantik Parfümler">
+                    </div>
+                    <div class="card-body">
+                        <h3>Tatlı & Romantik</h3>
+                        <p class="muted">Meyvemsi ve vanilya notalarıyla sıcak, davetkar karakterler. Özel anlar için.
+                        </p>
+                        <div class="tag-row">
+                            <span class="badge">M-0003</span>
+                            <span class="badge">M-0005</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card category-card">
+                    <div class="category-image">
+                        <img src="../../assets/pt_nis_ve_ozel.jpeg" alt="Nişane ve Özel Parfümler">
+                    </div>
+                    <div class="card-body">
+                        <h3>Niş & Özel</h3>
+                        <p class="muted">Benzersiz kompozisyonlar ve kalıcı karakterler. Fark yaratmak isteyenler için.
+                        </p>
+                        <div class="tag-row">
+                            <span class="badge">M-0004</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="koleksiyon" class="section-block">
+            <h2 class="section-heading">Parfüm Koleksiyonu</h2>
+            <p class="muted">Tüm ürünlerimiz Eau de Parfum kalitesinde, 50 ml şişelerde sunulmaktadır. Her ürün için
+                koku notları ve detaylı bilgiler mevcuttur.</p>
+            <div id="product-grid" class="grid product-grid"></div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-block">
+            <h2 class="section-heading">Neden Haros?</h2>
+            <div class="grid features-grid">
+                <div class="panel">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Özenle Seçilmiş Notalar</h3>
+                    <p class="muted">Her parfümümüz, deneyimli parfümörler tarafından özenle seçilmiş üst, orta ve taban
+                        notalardan oluşur. Açılıştan tabana kadar tutarlı bir koku deneyimi.</p>
+                </div>
+                <div class="panel">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Uzun Kalıcılık</h3>
+                    <p class="muted">Eau de Parfum konsantrasyonuyla gün boyu kalıcılık. 2-4 fıs ile 6-8 saat
+                        projeksiyon ve 12+ saat kalıcılık sağlar.</p>
+                </div>
+                <div class="panel">
+                    <div class="feature-icon">✨</div>
+                    <h3>Modern Formüller</h3>
+                    <p class="muted">Klasik parfümcülük geleneğini modern dokunuşlarla harmanlayan benzersiz formüller.
+                        Her yaş ve tarza uygun seçenekler.</p>
+                </div>
+                <div class="panel">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Güvenli Alışveriş</h3>
+                    <p class="muted">Trendyol güvencesiyle hızlı teslimat ve kolay iade. Orijinal ürün garantisi ve
+                        müşteri memnuniyeti önceliğimiz.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section-block">
+            <h2 class="section-heading">Haros Hakkında</h2>
+            <div class="about-section two-col">
+                <div class="panel">
+                    <h3>Haros Hikayesi</h3>
+                    <p class="muted">Haros Parfumeur, modern parfümcülük anlayışıyla kaliteli ve kalıcı kokular sunma
+                        vizyonuyla kuruldu. Her parfümümüz, kişiliğinizi yansıtan bir imza koku olma amacıyla
+                        tasarlandı.</p>
+                    <p class="muted">Ferah narenciye notalarından sıcak amber tabanlarına, her seri farklı bir duyguyu
+                        ve anı temsil eder. Maskülen ve unisex seçeneklerimizle herkes için uygun kokuları bir araya
+                        getiriyoruz.</p>
+                </div>
+                <div class="panel">
+                    <h3>Koku Notaları Rehberi</h3>
+                    <ul class="muted">
+                        <li><strong>Üst Notalar:</strong> İlk 15-30 dakika hissedilen, parfümün açılış karakterini
+                            belirleyen notalar. Genellikle narenciye ve ferah kokular.</li>
+                        <li><strong>Orta Notalar (Kalp):</strong> 30 dakika - 4 saat arası hissedilen, parfümün asıl
+                            karakterini oluşturan notalar. Çiçeksi, baharatlı veya meyvemsi kokular.</li>
+                        <li><strong>Taban Notalar:</strong> 4+ saat kalıcı, parfümün temelini oluşturan notalar. Odunsu,
+                            amber, misk gibi ağır kokular.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-section">
+                <h4>Haros Parfumeur</h4>
+                <p>Modern parfüm evi. Ferah, odunsu, tatlı dokuları harmanlayan kalıcı ve etkileyici koleksiyon.</p>
+                <div class="tag-row" style="margin-top: 12px;">
+                    <span class="pill">Eau de Parfum</span>
+                    <span class="pill">50 ml</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <ul>
+                    <li><a href="./index.html">🏠 Ana Sayfa</a></li>
+                    <li><a href="#koleksiyon">🎨 Koleksiyon</a></li>
+                    <li><a href="#kategoriler">📂 Kategoriler</a></li>
+                    <li><a href="../about/index.html">ℹ️ Hakkımızda</a></li>
+                    <li><a href="../brand/index.html">📖 Marka Rehberi</a></li>
+                    <li><a href="../privacy/index.html">🔒 KVKK & Gizlilik</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>İletişim</h4>
+                <ul>
+                    <li><a href="mailto:info@haros.com">📧 info@haros.com</a></li>
+                    <li><a href="tel:+905551112233">📞 +90 555 111 22 33</a></li>
+                    <li><a href="../contact/index.html">💬 İletişim Formu</a></li>
+                </ul>
+                <h4 style="margin-top: 20px;">Sosyal Medya</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/harosparfumeur/" target="_blank" rel="noopener noreferrer">📷
+                            Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Alışveriş Bilgileri</h4>
+                <ul>
+                    <li>✅ Trendyol güvencesiyle satış</li>
+                    <li>🚚 Hızlı ve güvenli kargo</li>
+                    <li>↩️ Kolay iade süreci</li>
+                    <li>🎁 Özel ambalaj seçenekleri</li>
+                    <li>💳 Güvenli ödeme yöntemleri</li>
+                </ul>
+                <a class="btn primary"
+                    href="https://www.trendyol.com/magaza/haros-parfumeur-m-1203037?sst=0&channelId=1&event=0"
+                    target="_blank" rel="noopener noreferrer"
+                    style="margin-top: 16px; width: 100%; justify-content: center;">
+                    Mağazayı Ziyaret Et
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">© <span data-year></span> Haros Parfumeur. Tüm hakları saklıdır.</div>
+    </footer>
+
+    <script src="../shared/common.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

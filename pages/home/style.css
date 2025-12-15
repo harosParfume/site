@@ -1,0 +1,348 @@
+/* Home Page Specific Styles */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.cta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.hero-visual {
+    height: 500px;
+}
+
+/* Category Grid */
+.category-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    margin-top: 24px;
+}
+
+.category-card {
+    display: grid;
+    grid-template-rows: 240px 1fr;
+}
+
+.category-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.4s ease;
+    padding: 8px;
+    transform: scale(0.92);
+}
+
+.category-card:hover .category-image img {
+    transform: scale(0.96);
+}
+
+.category-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+/* Active category card */
+.category-card.active-category {
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 32px rgba(212, 165, 165, 0.3);
+    transform: translateY(-6px);
+}
+
+[data-theme="dark"] .category-card.active-category {
+    box-shadow: 0 8px 32px rgba(232, 180, 180, 0.4);
+}
+
+/* Product Grid */
+.product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin-top: 24px;
+}
+
+.product-card {
+    display: grid;
+    grid-template-rows: 260px 1fr;
+    cursor: pointer;
+}
+
+.product-media {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-tertiary);
+}
+
+.product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-media img {
+    transform: scale(1.06);
+}
+
+.thumb-row {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    opacity: 0.9;
+    transition: all 0.2s ease;
+    background: var(--bg-secondary);
+}
+
+.thumb:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    border-color: var(--accent-primary);
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.product-desc {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.product-mood {
+    display: inline-flex;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--gradient-secondary);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+/* Features Grid */
+.features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    margin-top: 24px;
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+
+.features-grid h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+/* About Section */
+.about-section {
+    margin-top: 24px;
+}
+
+.about-section ul {
+    list-style: none;
+}
+
+.about-section ul li {
+    padding-left: 0;
+    margin-bottom: 12px;
+}
+
+.about-section ul li strong {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        height: 400px;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-visual {
+        height: 320px;
+    }
+
+    .product-card {
+        grid-template-rows: 220px 1fr;
+    }
+
+    .category-card {
+        grid-template-rows: 200px 1fr;
+    }
+
+    .cta-row {
+        flex-direction: column;
+    }
+
+    .cta-row .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .thumb {
+        width: 40px;
+        height: 40px;
+    }
+
+    .thumb-row {
+        bottom: 8px;
+        right: 8px;
+        gap: 6px;
+    }
+
+    .category-image img {
+        padding: 5px;
+        transform: scale(0.94);
+    }
+
+    .category-card:hover .category-image img {
+        transform: scale(0.98);
+    }
+}
+/* Enhanced Mobile Responsive */
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .hero-visual {
+        height: 350px;
+        order: -1;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .cta-row {
+        justify-content: center;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-visual {
+        height: 280px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .product-card {
+        grid-template-rows: 200px 1fr;
+    }
+
+    .category-card {
+        grid-template-rows: 180px 1fr;
+    }
+
+    .product-title {
+        font-size: 18px;
+    }
+
+    .product-desc {
+        font-size: 13px;
+    }
+
+    .category-card h3 {
+        font-size: 20px;
+    }
+
+    .thumb {
+        width: 36px;
+        height: 36px;
+    }
+
+    .thumb-row {
+        bottom: 6px;
+        right: 6px;
+        gap: 4px;
+    }
+
+    .feature-icon {
+        font-size: 40px;
+    }
+
+    .notes-preview {
+        font-size: 11px !important;
+    }
+}
